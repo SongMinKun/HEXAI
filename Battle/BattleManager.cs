@@ -18,7 +18,7 @@ public class BattleManager {
      *  어떻게 쓰는 물건인고
      */
 
-    // SMK 브랜치 TEST
+    // SMK 브랜치 TEST11
 
     // 여기도 바꾸고
 
