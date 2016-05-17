@@ -21,6 +21,7 @@ public class BattleManager {
     // 여기도 바꾸고
 
     // 내가 바꿈 SMK
+    // 나도 바꿈 cjh1205
 
 	// Update is called once per frame
 	public void CheckBattle () {    //todo : 이부분을 호출하는 부분이 필요함
