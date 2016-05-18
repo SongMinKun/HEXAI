@@ -2,61 +2,63 @@
 using System.Collections;
 
 public class BattleManager {
-    private static BattleManager inst = null;
 
-    private float normalAttackTime = 0f;
+    private static BattleManager inst = null;
     private PlayerBase attacker = null;
     private PlayerBase defender = null;
 
-    public static BattleManager GetInst(){
+    private float normalAttackTime = 0;
+
+    public static BattleManager GetInst() {
         if (inst == null)
+        {
             inst = new BattleManager();
+        }
+
         return inst;
     }
-
-    /*
-     *  어떻게 쓰는 물건인고
-     */
-
-    // SMK 브랜치 TEST11
-
-    // 여기도 바꾸고
-
-    // 내가 바꿈 SMK
-    // cjh1205 : 나도 바꿈
-    // cjh1205 : 왜 안되지
-    // 자러갑시다 님들 - psw221
-
+	
 	// Update is called once per frame
-	public void CheckBattle () {    //todo : 이부분을 호출하는 부분이 필요함
-        if (normalAttackTime != 0)
-        {
+    // todo : 호출하는 부분 필요함
+	public void CheckBattle() {
+        if(normalAttackTime != 0) {
             normalAttackTime += Time.smoothDeltaTime;
-            if (normalAttackTime >= 0.5f)
+
+            //if (normalAttackTime >= 0.16f)
+            if (normalAttackTime >= 0.16f)
             {
                 normalAttackTime = 0f;
-
-                Debug.Log("attack !! " + attacker.status.Name + " to " + defender.status.Name);
+                
+                // 데미지를 받는 부분 처리
+                // Debug.Log("ACT : attack " + attacker.ToString() + " to " + defender.status.Name);
+                //Debug.Log("ACT : attack " + attacker.ToString() + " to " + defender.ToString());
                 defender.GetDamage(10);
+
                 EffectManager.GetInst().ShowEffect(defender.gameObject);
                 EffectManager.GetInst().ShowDamage(defender.CurHex, 10);
 
                 SoundManager.GetInst().PlayAttackSound(attacker.transform.position);
 
+                //Debug.Log("ACT : attack " + attacker.GetDamage + " to " + b.ToString());
+
                 PlayerManager.GetInst().SetTurnOverTime(1.5f);
-   
+
+                //attacker.TurnOver();
             }
         }
+	
 	}
 
     public void AttackAtoB(PlayerBase a, PlayerBase b)
     {
+        // 노말 어택이 이펙트 되는 시점은 0.18초
         a.transform.rotation = Quaternion.LookRotation((b.CurHex.transform.position - a.transform.position).normalized);
-        a.anim.SetBool("Attack", true);
-
+        a.anim.SetTrigger("Attack");
         a.act = ACT.ATTACKING;
-        normalAttackTime = Time.smoothDeltaTime;
 
+        Debug.Log("ACT : attack " + a.ToString() + " to " + b.ToString());
+
+        normalAttackTime = Time.smoothDeltaTime;
         attacker = a;
         defender = b;
     }
