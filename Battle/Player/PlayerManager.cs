@@ -60,6 +60,7 @@ public class PlayerManager {
         player.CurHex = hex;
         player.transform.position = player.CurHex.transform.position;
         player.transform.Rotate(0, 90, 0);
+        player.status = new PlayerStatus(UNIT.KING);    // 킹
         Players.Add(player);
 
         player = ((GameObject)GameObject.Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
@@ -68,6 +69,7 @@ public class PlayerManager {
         player.CurHex = hex;
         player.transform.position = player.CurHex.transform.position;
         player.transform.Rotate(0, 90, 0);
+        player.status = new PlayerStatus(UNIT.ARCHER);    // 아처
         Players.Add(player);
         
         AIPlayer player2 = ((GameObject)GameObject.Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
@@ -76,6 +78,7 @@ public class PlayerManager {
         player2.CurHex = hex2;
         player2.transform.position = player2.CurHex.transform.position;
         player2.transform.Rotate(0, -90, 0);
+        player2.status = new PlayerStatus(UNIT.KING);    // 킹
         Players.Add(player2);
 
         player2 = ((GameObject)GameObject.Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
@@ -84,6 +87,7 @@ public class PlayerManager {
         player2.CurHex = hex2;
         player2.transform.position = player2.CurHex.transform.position;
         player2.transform.Rotate(0, -90, 0);
+        player2.status = new PlayerStatus(UNIT.TANKER);    // 탱커
         Players.Add(player2);
 
     }

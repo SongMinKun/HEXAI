@@ -30,20 +30,18 @@ public class BattleManager {
                 normalAttackTime = 0f;
                 
                 // 데미지를 받는 부분 처리
-                // Debug.Log("ACT : attack " + attacker.ToString() + " to " + defender.status.Name);
-                //Debug.Log("ACT : attack " + attacker.ToString() + " to " + defender.ToString());
-                defender.GetDamage(10);
+                int damage = attacker.status.Power;
+                
+                // 데미지를 status의 power로 받도록 설정.
+                defender.GetDamage(damage);
 
                 EffectManager.GetInst().ShowEffect(defender.gameObject);
-                EffectManager.GetInst().ShowDamage(defender.CurHex, 10);
+                EffectManager.GetInst().ShowDamage(defender.CurHex, damage);
 
                 SoundManager.GetInst().PlayAttackSound(attacker.transform.position);
 
-                //Debug.Log("ACT : attack " + attacker.GetDamage + " to " + b.ToString());
 
                 PlayerManager.GetInst().SetTurnOverTime(1.5f);
-
-                //attacker.TurnOver();
             }
         }
 	

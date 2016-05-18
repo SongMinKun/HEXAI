@@ -109,7 +109,7 @@ public class Hex : MonoBehaviour {
     void OnMouseEnter()
     {
         c = transform.GetComponent<Renderer>().material.color;
-        transform.GetComponent<Renderer>().material.color = Color.red;
+        transform.GetComponent<Renderer>().material.color = Color.cyan;
     }
 
     void OnMouseExit()
