@@ -71,6 +71,7 @@ public class PlayerBase : MonoBehaviour {
 
         GUILayout.Label("Name : " + enemy.status.Name);
         GUILayout.Label("HP : " + enemy.status.CurHp);
+        GUILayout.Label("Power : " + enemy.status.Power);
         GUILayout.Label("MoveRange : " + enemy.status.MoveRange);
         GUILayout.Label("AtkRange : " + enemy.status.AtkRange);
 

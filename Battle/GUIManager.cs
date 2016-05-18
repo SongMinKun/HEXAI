@@ -42,6 +42,7 @@ public class GUIManager {
 
         GUILayout.Label("Name : " + pb.status.Name);
         GUILayout.Label("HP : " + pb.status.CurHp);
+        GUILayout.Label("Power : " + pb.status.Power);
         GUILayout.Label("MoveRange : " + pb.status.MoveRange);
         GUILayout.Label("AtkRange : " + pb.status.AtkRange);
 
