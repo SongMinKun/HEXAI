@@ -23,7 +23,8 @@ public class Path
     }
 }
 
-public class MapManager {
+public class MapManager
+{
 
     private static MapManager inst = null;
     public GameObject GO_Hex; // todo : Unity에서 드래그로 설정한 프리팹. 나중에는 코드에서 적용해야 됨
@@ -31,9 +32,9 @@ public class MapManager {
     public float HexW;  // Awake에서 불러옴
     public float HexH;  // Awake에서 불러옴
 
-    public int MapSizeX = 5;
-    public int MapSizeY = 5;
-    public int MapSizeZ = 5;
+    public int MapSizeX = 4;
+    public int MapSizeY = 4;
+    public int MapSizeZ = 3;
 
     public Point[] Dirs;
 
@@ -202,29 +203,20 @@ public class MapManager {
 
                         if (distance <= atkRange && distance != 0)
                         {
-                            bool isExist = false;
-
                             foreach (PlayerBase pb in pm.Players)
                             {
                                 if (pb is AIPlayer)
                                 {
                                     if (pb.CurHex.MapPos == Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ].MapPos)
                                     {
-                                        isExist = true;
-                                        break;
-                                    }
-                                }
-                            }
+                                        // isReachAble가 무거운 함수다. 왜?
+                                        if (isReachAble(start, Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ], atkRange))
+                                        {
 
-                            if (isExist == true)
-                            {
-                                // isReachAble가 무거운 함수다. 왜?
-                                if (isReachAble(start, Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ], atkRange))
-                                {
-                                    if (Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ].isExist == false)
-                                    {
-                                        Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ].transform.GetComponent<Renderer>().material.color = Color.red;
-                                        highLightedCount++;
+                                            Map[x + MapSizeX][y + MapSizeY][z + MapSizeZ].transform.GetComponent<Renderer>().material.color = Color.red;
+                                            highLightedCount++;
+
+                                        }
                                     }
                                 }
                             }
@@ -334,7 +326,7 @@ public class MapManager {
             return parent; // 목적지를 찾은 경우
         }
 
-        List<Hex> neibhors = GetNeibhors(parent.CurHex); // 현재 start Hex 기준으로 주변 Hex를 구함
+        List<Hex> neibhors = GetNeibhors(parent.CurHex, parent.G); // 현재 start Hex 기준으로 주변 Hex를 구함
 
         foreach (Hex h in neibhors)
         {
@@ -397,7 +389,7 @@ public class MapManager {
     // 인접한 Hex를 구해오는 함수
     // 6개가 있는데 현재 위치를 기준으로 x, y, z의 좌표가 0과 1로 증감할 때 이 값들이
     // 이웃한 근접 Hex
-    public List<Hex> GetNeibhors(Hex pos)
+    public List<Hex> GetNeibhors(Hex pos, int times)
     {
         List<Hex> rtn = new List<Hex>();
         Point cur = pos.MapPos;
@@ -406,6 +398,12 @@ public class MapManager {
         {
             return rtn;
         }
+
+        // times는 이동한 횟수, 이동한 횟수가 0이라는 것은 현재의 위치
+        // 현재의 위치에서는 자식들을 생성해야 하므로 현재의 위치를 제외하고 
+        // 헥스에 캐릭터가 존재하는 경우 return ( SMK )
+        if (pos.isExist == true && times != 0)
+            return rtn;
 
         foreach (Point p in Dirs)
         {
