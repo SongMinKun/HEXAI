@@ -67,6 +67,11 @@ public class UserPlayer : PlayerBase {
                 if (MoveHexes.Count == 0)
                 {
                     act = ACT.IDLE;
+
+                    // 이동할 때 원래 있던 자리의 isExit은 false로 도착한 자리의 isExist은 true로 ( SMK )
+                    CurHex.isExist = false;
+                    nextHex.isExist = true;
+
                     CurHex = nextHex;
                     anim.SetBool("Run", false);
                     
@@ -75,75 +80,5 @@ public class UserPlayer : PlayerBase {
             }
         }
     }
-
-    /*
-    public override void DrawStatus()
-    {
-        float btnW = 100f;
-        float btnH = 50f;
-
-        Rect rect = new Rect(0, (Screen.height / 2) - btnH * 4, btnW, btnH);
-        GUI.Label(rect, "Name : " + status.Name);
-
-        rect = new Rect(0, (Screen.height / 2) - btnH * 3, btnW, btnH);
-        GUI.Label(rect, "HP : " + status.CurHp);
-
-        rect = new Rect(0, (Screen.height / 2) - btnH * 2, btnW, btnH);
-        GUI.Label(rect, "MoveRange : " + status.MoveRange);
-
-        rect = new Rect(0, (Screen.height / 2) - btnH * 1, btnW, btnH);
-        GUI.Label(rect, "AtkRange : " + status.AtkRange);
-
-        base.DrawStatus();
-    }
-
-    // 완료
-    // 커멘드 버튼 그림
-    public override void DrawCommand()
-    {
-        float btnW = 100f;
-        float btnH = 50f;
-
-        // 버튼
-        // 시작 x좌표, 시작 y좌표, 가로 길이, 세로 길이
-        Rect rect = new Rect(0, Screen.height / 2, btnW, btnH);
-
-        if (GUI.Button(rect, "Move"))
-        {
-            Debug.Log("Move");
-
-            // 이동 경로만큼 Hilight
-            if (MapManager.GetInst().HighLightMoveRange(CurHex, status.MoveRange) == true)
-            {
-                act = ACT.MOVEHIGHLIGHT;
-            }
-        }
-
-        rect = new Rect(0, (Screen.height / 2) + btnH, btnW, btnH);
-
-        if (GUI.Button(rect, "Attack"))
-        {
-            Debug.Log("Attack");
-
-            // 이동 경로만큼 Hilight
-            if (MapManager.GetInst().HighLightAtkRange(CurHex, status.AtkRange) == true)
-            {
-                act = ACT.ATTACKHIGHLIGHT;
-            }
-        }
-
-        rect = new Rect(0, (Screen.height / 2) + (btnH * 2), btnW, btnH);
-
-        if (GUI.Button(rect, "Turn Over"))
-        {
-            Debug.Log("Turn Over");
-
-            PlayerManager.GetInst().TurnOver();
-        }
-
-        // 왜 쓰는건지?
-        base.DrawCommand();
-    }
-     * */
 }
 

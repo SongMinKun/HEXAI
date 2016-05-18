@@ -33,8 +33,6 @@ public class GUIManager {
                 }
             }
         }
-
-        DrawTurnInfo();
     }
 
     // todo : 이 부분을 호출하는 것이 필요함
@@ -94,84 +92,5 @@ public class GUIManager {
         }
 
         GUILayout.EndArea();
-    }
-
-    List<GameObject> players = new List<GameObject>();
-
-    public void InitTurnInfoMgr()
-    {
-        players = new List<GameObject>();
-    }
-
-    public void AddTurnPlayer(PlayerBase pb)
-    {
-        GameObject userPlayer = pm.GO_userPlayer;
-        GameObject aiPlayer = pm.GO_aiPlayer;
-
-        if (pb is UserPlayer)
-        {
-            players.Add((GameObject)GameObject.Instantiate(userPlayer, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)));
-        }
-
-        else if (pb is AIPlayer)
-        {
-            players.Add((GameObject)GameObject.Instantiate(aiPlayer, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)));
-        }
-    }
-
-    float camX;
-    float camY;
-    float camZ;
-    Quaternion turnRot;
-
-    public void DrawTurnInfo()
-    {
-
-        GUILayout.BeginArea(new Rect(0, 0, 200f, 100f), "Turn Info", GUI.skin.window);
-
-        GUILayout.EndArea();
-
-        int maxDraw = 5;
-        int curDraw = pm.CurTurnIdx;
-
-        if (maxDraw > pm.Players.Count)
-        {
-            maxDraw = pm.Players.Count;
-        }
-
-        for (int i = 0; i < maxDraw; i++)
-        {
-            players[curDraw].transform.position = new Vector3(camX + -19.5f + i * 3f, -2f, camZ + 11f);
-            players[i].transform.rotation = turnRot;//Quaternion.Euler(new Vector3(300f, 160f, 29f));
-            
-            curDraw++;
-
-            if (curDraw == pm.Players.Count)
-            {
-                curDraw = 0;
-            }
-        }
-    }
-
-    public void UpdateTurnInfoPos(float x, float z)
-    {
-        camX = x;
-        camZ = z;
-    }
-
-    public void RemoveTurnPlayer(PlayerBase pb, int turnIdx)
-    {
-        GameObject obj = players[turnIdx];
-
-        players.RemoveAt(turnIdx);
-        GameObject.Destroy(obj);
-    }
-
-    public void UpdateTurnInfoPos(Vector3 pos, Quaternion rot)
-    {
-        camX = pos.x;
-        camY = pos.y;
-        camZ = pos.z;
-        turnRot = rot;
     }
 }

@@ -78,6 +78,11 @@ public class AIPlayer : PlayerBase {
                 {
                     anim.SetBool("Run", false);
 
+                    // 이동할 때 원래 있던 자리의 isExit은 false로 도착한 자리의 isExist은 true로 ( SMK )
+                    CurHex.isExist = false;
+                    nextHex.isExist = true;
+
+
                     act = ACT.IDLE;
                     CurHex = nextHex;
 

@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour {
     {
         if (em.StageStarted)
         {
-            gm.UpdateTurnInfoPos(transform.position.x, transform.position.z);
             gm.DrawGUI();
         }
     }
@@ -110,16 +109,6 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Mouse 1(Right) down!!");
             pm.MouseInputProc(1);
         }
-    }
-
-    // Hex 위치로 카메라 이동
-    public void MoveCamPosToHex(Hex hex)
-    {
-        // y는 줌 인, 줌 아웃이기 때문에 없음
-        float destX = hex.transform.position.x;
-        float destZ = hex.transform.position.z;
-
-        camera.transform.position = new Vector3(destX, camera.transform.position.y, destZ);
     }
 
     public Hex damagedHex;

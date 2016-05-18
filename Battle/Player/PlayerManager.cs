@@ -55,157 +55,37 @@ public class PlayerManager {
     public void GenPlayerTest()
     {
         UserPlayer player = ((GameObject)GameObject.Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        //Hex hex = MapManager.GetInst().GetPlayerHex(-1, 3, -2);
         Hex hex = MapManager.GetInst().GetPlayerHex(-3, 3, 0);
         hex.isExist = true;
         player.CurHex = hex;
         player.transform.position = player.CurHex.transform.position;
         player.transform.Rotate(0, 90, 0);
-        //player.transform.GetComponent<Renderer>().material.color = Color.red;
         Players.Add(player);
-        GUIManager.GetInst().AddTurnPlayer(player);
+
+        player = ((GameObject)GameObject.Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
+        hex = MapManager.GetInst().GetPlayerHex(-3, 2, 1);
+        hex.isExist = true;
+        player.CurHex = hex;
+        player.transform.position = player.CurHex.transform.position;
+        player.transform.Rotate(0, 90, 0);
+        Players.Add(player);
         
         AIPlayer player2 = ((GameObject)GameObject.Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
-        //Hex hex2 = MapManager.GetInst().GetPlayerHex(3, -1, -2);
         Hex hex2 = MapManager.GetInst().GetPlayerHex(3, -3, 0);
         hex2.isExist = true;
         player2.CurHex = hex2;
         player2.transform.position = player2.CurHex.transform.position;
         player2.transform.Rotate(0, -90, 0);
-        //player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-        GUIManager.GetInst().AddTurnPlayer(player2);
-        /*
-        player = ((GameObject)Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        hex = MapManager.GetInst().GetPlayerHex(-2, 3, -1);
-        hex.isExist = true;
-        player.CurHex = hex;
-        player.transform.position = player.CurHex.transform.position;
-        player.transform.GetComponent<Renderer>().material.color = Color.red;
-        Players.Add(player);
-        
-        player2 = ((GameObject)Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
-        hex2 = MapManager.GetInst().GetPlayerHex(3, -2, -1);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-        
-        player = ((GameObject)Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        hex = MapManager.GetInst().GetPlayerHex(-3, 3, 0);
-        hex.isExist = true;
-        player.CurHex = hex;
-        player.transform.position = player.CurHex.transform.position;
-        player.transform.GetComponent<Renderer>().material.color = Color.red;
-        Players.Add(player);
-
-        player2 = ((GameObject)Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
-        hex2 = MapManager.GetInst().GetPlayerHex(3, -3, 0);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
         Players.Add(player2);
 
-        player = ((GameObject)Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        hex = MapManager.GetInst().GetPlayerHex(-3, 2, 1);
-        hex.isExist = true;
-        player.CurHex = hex;
-        player.transform.position = player.CurHex.transform.position;
-        player.transform.GetComponent<Renderer>().material.color = Color.red;
-        Players.Add(player);
-
-        player2 = ((GameObject)Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
+        player2 = ((GameObject)GameObject.Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
         hex2 = MapManager.GetInst().GetPlayerHex(2, -3, 1);
         hex2.isExist = true;
         player2.CurHex = hex2;
         player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
+        player2.transform.Rotate(0, -90, 0);
         Players.Add(player2);
 
-        player = ((GameObject)Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        hex = MapManager.GetInst().GetPlayerHex(-3, 1, 2);
-        hex.isExist = true;
-        player.CurHex = hex;
-        player.transform.position = player.CurHex.transform.position;
-        player.transform.GetComponent<Renderer>().material.color = Color.red;
-        Players.Add(player);
-
-        player2 = ((GameObject)Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
-        hex2 = MapManager.GetInst().GetPlayerHex(1, -3, 2);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player = ((GameObject)Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        hex = MapManager.GetInst().GetPlayerHex(-2, 2, 0);
-        hex.isExist = true;
-        player.CurHex = hex;
-        player.transform.position = player.CurHex.transform.position;
-        player.transform.GetComponent<Renderer>().material.color = Color.red;
-        Players.Add(player);
-
-        player2 = ((GameObject)Instantiate(GO_aiPlayer)).GetComponent<AIPlayer>();
-        hex2 = MapManager.GetInst().GetPlayerHex(2, -2, 0);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-        */
-        //////////
-        /*
-        PlayerBase player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        Hex hex2 = MapManager.GetInst().GetPlayerHex(3, -1, -2);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        hex2 = MapManager.GetInst().GetPlayerHex(3, -2, -1);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        hex2 = MapManager.GetInst().GetPlayerHex(3, -3, 0);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        hex2 = MapManager.GetInst().GetPlayerHex(2, -3, 1);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        hex2 = MapManager.GetInst().GetPlayerHex(1, -3, 2);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-
-        player2 = ((GameObject)Instantiate(GO_Player)).GetComponent<PlayerBase>();
-        hex2 = MapManager.GetInst().GetPlayerHex(2, -2, 0);
-        hex2.isExist = true;
-        player2.CurHex = hex2;
-        player2.transform.position = player2.CurHex.transform.position;
-        player2.transform.GetComponent<Renderer>().material.color = Color.green;
-        Players.Add(player2);
-         * */
     }
 
     // 완료
@@ -227,6 +107,7 @@ public class PlayerManager {
             {
                 pb.MoveHexes = MapManager.GetInst().GetPath(start, dest);
 
+                // 이동할 때 원래 있던 자리의 isExit은 false로 도착한 자리의 isExist은 true로 ( SMK )
                 start.isExist = false;
                 dest.isExist = true;
 
@@ -238,9 +119,6 @@ public class PlayerManager {
                 pb.act = ACT.MOVING;
 
                 MapManager.GetInst().ResetMapColor();
-
-                // 이동 된 후에 자기가 있었던 Hex에서 isExist를 false로
-                // todo : 상대가 있는 곳도 이동이 안되게
             }
         }
     }
@@ -269,16 +147,13 @@ public class PlayerManager {
         }
 
         GameObject.Destroy(EffectManager.GetInst().go);
-
-        // 카메라 이동
-        GameManager.GetInst().MoveCamPosToHex(Players[CurTurnIdx].CurHex);
     }
 
     public void RemovePlayer(PlayerBase pb)
     {
-        int pos = Players.IndexOf(pb);
+        //int pos = Players.IndexOf(pb);
+        pb.CurHex.isExist = false;
         Players.Remove(pb);
-        GUIManager.GetInst().RemoveTurnPlayer(pb, pos);
         GameObject.Destroy(pb.gameObject);
 
         int enemyCnt = 0;
