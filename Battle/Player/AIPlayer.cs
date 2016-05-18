@@ -126,5 +126,17 @@ public class AIPlayer : PlayerBase {
             BattleManager.GetInst().AttackAtoB(pb, this);
         }
     }
+
+    void OnMouseEnter()
+    {
+        enemyInfo = true;
+        enemy = this;
+    }
+
+    void OnMouseExit()
+    {
+        enemyInfo = false;
+        enemy = null;
+    }
 }
 

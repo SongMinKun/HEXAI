@@ -24,6 +24,9 @@ public class PlayerBase : MonoBehaviour {
     public List<Hex> MoveHexes;
 
     public float removeTime = 0;
+
+    public bool enemyInfo = false;
+    public PlayerBase enemy;
     
     // todo : 같은 편의 말이면 지나갈 수 있지만 상대방의 밀이면 지나갈 수 없게
 
@@ -44,6 +47,13 @@ public class PlayerBase : MonoBehaviour {
 
 	}
 
+    void OnGUI()
+    {
+        if (enemyInfo)
+            DrawEnemyInfo();
+    }
+
+
     /*
     public virtual void DrawStatus()
     {
@@ -55,6 +65,18 @@ public class PlayerBase : MonoBehaviour {
 
     }
      */
+    void DrawEnemyInfo()
+    {
+        GUILayout.BeginArea(new Rect(Screen.width / 4, Screen.height / 4 * 3, 150f, Screen.height / 4), "Enemy Info", GUI.skin.window);
+
+        GUILayout.Label("Name : " + enemy.status.Name);
+        GUILayout.Label("HP : " + enemy.status.CurHp);
+        GUILayout.Label("MoveRange : " + enemy.status.MoveRange);
+        GUILayout.Label("AtkRange : " + enemy.status.AtkRange);
+
+        GUILayout.EndArea();
+    }
+
 
     public void GetDamage(int damage)
     {
