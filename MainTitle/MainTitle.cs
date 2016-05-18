@@ -10,18 +10,18 @@ public class MainTitle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
 
-    // 이것은 나의 데스크탑 SMK
+	}
 
     void OnGUI()
     {
-        float btnW = 200f;
+        float btnW = 150f;
         float btnH = 50f;
+
         Rect rect = new Rect(Screen.width / 2 - btnW / 2, Screen.height / 2, btnW, btnH);
 
-        if(GUI.Button(rect, "New Game")){
+        if (GUI.Button(rect, "New Game"))
+        {
             Application.LoadLevel(1);
         }
     }

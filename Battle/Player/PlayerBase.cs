@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// 완료
 public enum ACT
 {
     IDLE,
@@ -9,67 +10,91 @@ public enum ACT
     MOVING,
     ATTACKHIGHLIGHT,
     ATTACKING,
-    DIYING
+    DIED
+}
+/// <summary>
+/*
+/// </summary>
+public enum JOB
+{
+    KING,
+    KNIGHT,
+    WARRIOR,
+    ARCHER,
+    HEALER,
+    MAGICIAN
 }
 
+// todo : 스킬은 나중에 따로 클래스로 만들어서 유지 보수 편하게
+public class Unit
+{
+    public JOB job;     // 직업
+    public int hp;      // 체력
+    public int power;   // 공격력
+    public int skill;   // 스킬
+    public int coolTime; // 스킬 쿨타임
+    public int moveRange; // 이동 범위
+    public int attackRange; // 공격 범위
+    public int skillRange; // 스킬 범위
+}
+*/
+// Player을 관리하는
 public class PlayerBase : MonoBehaviour {
+
     public Animator anim;
     public PlayerStatus status;
-    public Hex CurHex;
+
+    public Hex CurHex; // 어느 위치에 있는지 Hex 저장
     public ACT act;
     public List<Hex> MoveHexes;
 
-    public float removeTime = 0f;
-
-    public float damagedTime = 0f;
+    public float removeTime = 0;
+    
+    // todo : 같은 편의 말이면 지나갈 수 있지만 상대방의 밀이면 지나갈 수 없게
 
     void Awake()
     {
-        
+
     }
+
 	// Use this for initialization
 	void Start () {
+	
 	}
 	
+    // 완료
 	// Update is called once per frame
+    // 플레이어의 이동시 모습을 스무스하게 구현
 	void Update () {
-        /*
-        if (act == ACT.MOVING)
-        {
-            Hex nextHex = MoveHexes[0];
 
-            float distance = Vector3.Distance(transform.position, nextHex.transform.position);
-            if (distance > 0.1f)
-            {
-                transform.position += (nextHex.transform.position - transform.position).normalized * Time.smoothDeltaTime * status.MoveSpeed;
-            }
-            else // 다음 헥사에 도착
-            {
-                transform.position = nextHex.transform.position;
-                MoveHexes.RemoveAt(0);
-                if (MoveHexes.Count == 0)   // 최종도착
-                {
-                    act = ACT.IDLE;
-                    CurHex = nextHex;
-                    PlayerManager.GetInst().TurnOver();
-                }
-               
-            }
-        }
-         * */
 	}
+
+    /*
+    public virtual void DrawStatus()
+    {
+
+    }
+
+    public virtual void DrawCommand()
+    {
+
+    }
+     */
 
     public void GetDamage(int damage)
     {
-        status.CurHP -= damage;
-        if (status.CurHP <= 0)
+        status.CurHp -= damage;
+
+        if (status.CurHp <= 0)
         {
-            Debug.Log("Died");
+            Debug.Log("Died!!");
             anim.SetTrigger("Die");
-            act = ACT.DIYING;
-            removeTime += Time.smoothDeltaTime;
+            act = ACT.DIED;
+
+            removeTime += Time.deltaTime;
             //PlayerManager.GetInst().RemovePlayer(this);
         }
+
         else
         {
             Debug.Log("Hited");
