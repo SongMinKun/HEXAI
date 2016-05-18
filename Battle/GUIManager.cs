@@ -38,7 +38,7 @@ public class GUIManager {
     // todo : 이 부분을 호출하는 것이 필요함
     public void DrawStatus(PlayerBase pb)
     {
-        GUILayout.BeginArea(new Rect(0, Screen.height / 2, 150f, Screen.height / 2), "Player Info", GUI.skin.window);
+        GUILayout.BeginArea(new Rect(0, Screen.height / 4 * 3, 150f, Screen.height / 4), "Player Info", GUI.skin.window);
 
         GUILayout.Label("Name : " + pb.status.Name);
         GUILayout.Label("HP : " + pb.status.CurHp);
