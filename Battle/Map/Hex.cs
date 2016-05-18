@@ -8,6 +8,8 @@ public class Point
     public int Y;
     public int Z;
 
+    public int test123;
+
     public Point(int x, int y, int z)
     {
         X = x;
