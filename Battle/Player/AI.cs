@@ -94,15 +94,6 @@ public class AI {
         if (nearUserPlayer != null)
         {
             BattleManager.GetInst().AttackAtoB(aiPlayer, nearUserPlayer);
-            //aiPlayer.transform.rotation = Quaternion.LookRotation((nearUserPlayer.CurHex.transform.position - aiPlayer.transform.position).normalized);
-            // nearUserPlayer.GetDamage(10);
-            //Debug.Log("AIplayer Attack!!");
-            //aiPlayer.anim.SetBool("Attack", true);
-
-            //BattleManager.GetInst().AttackAtoB(aiPlayer, nearUserPlayer);
-            //SoundManager.GetInst().PlayAttackSound();
-
-            //aiPlayer.anim.SetBool("Attack", true);
 
             return;
         }

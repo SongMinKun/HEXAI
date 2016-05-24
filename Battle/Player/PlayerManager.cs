@@ -12,6 +12,7 @@ public class PlayerManager {
     public List<PlayerBase> Players = new List<PlayerBase>();
 
     public int CurTurnIdx = 0;
+    public int turnIdx = 0;
 
     private float turnOverTime = 0;
     private float curTurnOverTime = 0;
@@ -55,7 +56,7 @@ public class PlayerManager {
     public void GenPlayerTest()
     {
         UserPlayer player = ((GameObject)GameObject.Instantiate(GO_userPlayer)).GetComponent<UserPlayer>();
-        Hex hex = MapManager.GetInst().GetPlayerHex(-3, 3, 0);
+        Hex hex = MapManager.GetInst().GetPlayerHex(-4, 4, 0);
         hex.isExist = true;
         player.CurHex = hex;
         player.transform.position = player.CurHex.transform.position;
@@ -138,12 +139,15 @@ public class PlayerManager {
     public void TurnOver()
     {
         MapManager.GetInst().ResetMapColor();
-
+        TimerManager tm = TimerManager.GetInst();
         PlayerBase pb = Players[CurTurnIdx];
 
         pb.act = ACT.IDLE;
 
+        turnIdx++;
         CurTurnIdx++;
+
+        tm.resetTimer();
 
         if (CurTurnIdx >= Players.Count)
         {

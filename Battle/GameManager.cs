@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour {
     GUIManager gm;
     EventManager em;
 
-    Camera camera;
-
     GameObject StageStartString;
     GameObject StageClearString;
     GameObject GameOverString;
@@ -32,14 +30,14 @@ public class GameManager : MonoBehaviour {
         gm = GUIManager.GetInst();
         em = EventManager.GetInst();
 
-        camera = GetComponent<Camera>();
-
         StageStartString = (GameObject)GameObject.FindGameObjectWithTag("StageStart");
         StageClearString = (GameObject)GameObject.FindGameObjectWithTag("StageClear");
         GameOverString = (GameObject)GameObject.FindGameObjectWithTag("GameOver");
 
         StageClearString.SetActive(false);
         GameOverString.SetActive(false);
+
+        Screen.SetResolution(1024, 720, true);
     }
 
 	// Use this for initialization
@@ -58,7 +56,6 @@ public class GameManager : MonoBehaviour {
 
         if (em.StageStarted == true)
         {
-            CheckMouseZoom();
             CheckMouseButtonDown();
             bm.CheckBattle();
             pm.CheckTurnOver();
@@ -76,28 +73,6 @@ public class GameManager : MonoBehaviour {
         {
             gm.DrawGUI();
         }
-    }
-
-    void CheckMouseZoom()
-    {
-        float mouse = Input.GetAxis("Mouse ScrollWheel");
-        float mouseY = camera.transform.position.y - mouse * 5.0f;
-
-        // 12까지 줌 인, 24까지 줌 아웃 가능하게
-        if (mouseY < 12)
-        {
-            mouseY = 12;
-        }
-
-        else if (mouseY > 32)
-        {
-            mouseY = 32;
-        }
-        
-        Vector3 newPos = new Vector3(camera.transform.position.x, mouseY, camera.transform.position.z);
-
-        // 카메라 이동
-       camera.transform.position = newPos;
     }
 
     // 마우스 우클릭시 캔슬

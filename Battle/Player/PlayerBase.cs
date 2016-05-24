@@ -67,7 +67,8 @@ public class PlayerBase : MonoBehaviour {
      */
     void DrawEnemyInfo()
     {
-        GUILayout.BeginArea(new Rect(Screen.width / 4, Screen.height / 4 * 3, 150f, Screen.height / 4), "Enemy Info", GUI.skin.window);
+        //GUILayout.BeginArea(new Rect(0, Screen.height / 6 * 5, Screen.width / 3 , Screen.height / 6), "Player Info", GUI.skin.window);
+        GUILayout.BeginArea(new Rect(Screen.width / 3, Screen.height / 6 * 5, Screen.width / 3, Screen.height / 6), "Enemy Info", GUI.skin.window);
 
         GUILayout.Label("Name : " + enemy.status.Name);
         GUILayout.Label("HP : " + enemy.status.CurHp);

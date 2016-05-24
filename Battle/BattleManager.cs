@@ -34,6 +34,7 @@ public class BattleManager {
                 
                 // 데미지를 status의 power로 받도록 설정.
                 defender.GetDamage(damage);
+                defender.anim.SetTrigger("Hited");
 
                 EffectManager.GetInst().ShowEffect(defender.gameObject);
                 EffectManager.GetInst().ShowDamage(defender.CurHex, damage);

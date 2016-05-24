@@ -33,12 +33,13 @@ public class GUIManager {
                 }
             }
         }
+        DrawTurnInfo();
     }
 
     // todo : 이 부분을 호출하는 것이 필요함
     public void DrawStatus(PlayerBase pb)
     {
-        GUILayout.BeginArea(new Rect(0, Screen.height / 4 * 3, 150f, Screen.height / 4), "Player Info", GUI.skin.window);
+        GUILayout.BeginArea(new Rect(0, Screen.height / 6 * 5, Screen.width / 3 , Screen.height / 6), "Player Info", GUI.skin.window);
 
         GUILayout.Label("Name : " + pb.status.Name);
         GUILayout.Label("HP : " + pb.status.CurHp);
@@ -49,16 +50,28 @@ public class GUIManager {
         GUILayout.EndArea();
     }
 
+    public void DrawTurnInfo()
+    {
+
+        GUILayout.BeginArea(new Rect(0, 0, Screen.width / 4, Screen.height / 8), "Turn Info", GUI.skin.window);
+
+        if(pm.turnIdx % 2 == 0)
+            GUILayout.Label(" Turn : " + ((pm.turnIdx / 2) + 1) + "  USER TURN");
+        else
+            GUILayout.Label(" Turn : " + ((pm.turnIdx / 2) + 1 )+ "  AI TURN");
+
+        GUILayout.Label(" Turn : " + pm.turnIdx );
+
+
+        GUILayout.EndArea();
+    }
+
     // 완료
     // 커멘드 버튼 그림
     public void DrawCommand(PlayerBase pb)
     {
-        int cmdCnt = 3;
-        float cmdW = 150f;
-        float btnH = 50f;
-
-        GUILayout.BeginArea(new Rect(Screen.width - cmdW, Screen.height - cmdCnt * btnH, cmdW, cmdCnt * btnH), "Command", GUI.skin.window);
-
+        GUILayout.BeginArea(new Rect(Screen.width / 3 * 2, Screen.height / 6 * 5, Screen.width / 3, Screen.height / 6), "Command", GUI.skin.window);
+     
         // 버튼
         // 시작 x좌표, 시작 y좌표, 가로 길이, 세로 길이
         //Rect rect = new Rect(0, Screen.height / 2, btnW, btnH);

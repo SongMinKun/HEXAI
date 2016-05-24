@@ -32,7 +32,6 @@ public class EffectManager {
     {
         Vector3 pos = hex.transform.position;
         pos.y += 2f;
-        //GameObject go = (GameObject)Instantiate(GO_AttackEffect, hex.transform.position, hex.transform.rotation);
         go = (GameObject)GameObject.Instantiate(GO_AttackEffect, pos, hex.transform.rotation);
         //GameObject.Destroy(go);
     }
