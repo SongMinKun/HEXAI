@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     BattleManager bm;
     GUIManager gm;
     EventManager em;
+    
 
     Camera camera;
 
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour {
     {
         if (em.StageStarted)
         {
-            gm.UpdateTurnInfoPos(transform.position.x, transform.position.z);
+            //gm.UpdateTurnInfoPos(transform.position.x, transform.position.z);
             gm.DrawGUI();
         }
     }

@@ -31,9 +31,9 @@ public class MapManager {
     public float HexW;  // Awake에서 불러옴
     public float HexH;  // Awake에서 불러옴
 
-    public int MapSizeX = 5;
-    public int MapSizeY = 5;
-    public int MapSizeZ = 5;
+    public int MapSizeX = 4;
+    public int MapSizeY = 4;
+    public int MapSizeZ = 3;
 
     public Point[] Dirs;
 

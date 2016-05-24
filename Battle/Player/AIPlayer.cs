@@ -28,14 +28,15 @@ public class AIPlayer : PlayerBase {
             removeTime += Time.deltaTime;
             if (removeTime >= 3.3f)
             {
-                pm.TurnOver();
+                //pm.TurnOver();
                 pm.RemovePlayer(this);
+                pm.TurnOver();
             }
         }
 
         if (act == ACT.IDLE) // idle 상태일 때 무엇인가를 한다
         {
-            if (pm.Players[pm.CurTurnIdx] == this)
+            if (pm.CurPlayer == this)
             {
                 MapManager.GetInst().SetHexColor(CurHex, Color.gray);
 
@@ -112,7 +113,8 @@ public class AIPlayer : PlayerBase {
     void OnMouseDown()
     {
         PlayerManager pm = PlayerManager.GetInst();
-        PlayerBase pb = pm.Players[pm.CurTurnIdx];
+        //PlayerBase pb = pm.Players[pm.CurTurnIdx];
+        PlayerBase pb = pm.CurPlayer;
 
         // 바닥을 누르면 체력이 달지 않고 상대방 말을 눌러야 체력이 단다
         // todo : 바닥 눌러도 달게

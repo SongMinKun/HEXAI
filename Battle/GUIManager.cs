@@ -22,19 +22,28 @@ public class GUIManager {
     {
         if (pm.Players.Count > 0)
         {
-            PlayerBase pb = pm.Players[pm.CurTurnIdx];
+            //PlayerBase pb = pm.Players[pm.CurTurnIdx];
+            PlayerBase pb = pm.CurPlayer;
 
-            if(pb is UserPlayer) {
+            // todo : 여기에서 선택된 유저를 불러와야 할 것같음.
 
+            if (pb is UserPlayer)
+            {
+                if( pb.act == ACT.SELECT)           //cloud
+                {
+                    
+                }
                 if (pb.act == ACT.IDLE)
                 {
-                    DrawStatus(pm.Players[pm.CurTurnIdx]);
-                    DrawCommand(pm.Players[pm.CurTurnIdx]);
+                    //DrawStatus(pm.Players[pm.CurTurnIdx]);
+                    //DrawCommand(pm.Players[pm.CurTurnIdx]);
+                    DrawStatus(pm.CurPlayer);
+                    DrawCommand(pm.CurPlayer);
                 }
             }
         }
 
-        DrawTurnInfo();
+        //DrawTurnInfo();
     }
 
     // todo : 이 부분을 호출하는 것이 필요함
@@ -110,12 +119,12 @@ public class GUIManager {
 
         if (pb is UserPlayer)
         {
-            players.Add((GameObject)GameObject.Instantiate(userPlayer, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)));
+            players.Add((GameObject)GameObject.Instantiate(userPlayer, new Vector3(0, -5, 0), new Quaternion(0, 0, 0, 0)));
         }
 
         else if (pb is AIPlayer)
         {
-            players.Add((GameObject)GameObject.Instantiate(aiPlayer, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)));
+            players.Add((GameObject)GameObject.Instantiate(aiPlayer, new Vector3(0, -5, 0), new Quaternion(0, 0, 0, 0)));
         }
     }
 

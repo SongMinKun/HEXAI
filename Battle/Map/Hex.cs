@@ -68,7 +68,8 @@ public class Hex : MonoBehaviour {
     void OnMouseDown()
     {
         PlayerManager pm = PlayerManager.GetInst();
-        PlayerBase pb = pm.Players[pm.CurTurnIdx];
+        //PlayerBase pb = pm.Players[pm.CurTurnIdx];
+        PlayerBase pb = pm.CurPlayer;
 
         Debug.Log(MapPos + " OnMouseDown");
 
@@ -101,7 +102,8 @@ public class Hex : MonoBehaviour {
             }
         }
 
-        pm.MovePlayer(pm.Players[pm.CurTurnIdx].CurHex , this); 
+        //pm.MovePlayer(pm.Players[pm.CurTurnIdx].CurHex , this); 
+        pm.MovePlayer(pm.CurPlayer.CurHex, this);
     }
 
     public Color c;

@@ -10,34 +10,10 @@ public enum ACT
     MOVING,
     ATTACKHIGHLIGHT,
     ATTACKING,
-    DIED
-}
-/// <summary>
-/*
-/// </summary>
-public enum JOB
-{
-    KING,
-    KNIGHT,
-    WARRIOR,
-    ARCHER,
-    HEALER,
-    MAGICIAN
+    DIED,
+    SELECT,
 }
 
-// todo : 스킬은 나중에 따로 클래스로 만들어서 유지 보수 편하게
-public class Unit
-{
-    public JOB job;     // 직업
-    public int hp;      // 체력
-    public int power;   // 공격력
-    public int skill;   // 스킬
-    public int coolTime; // 스킬 쿨타임
-    public int moveRange; // 이동 범위
-    public int attackRange; // 공격 범위
-    public int skillRange; // 스킬 범위
-}
-*/
 // Player을 관리하는
 public class PlayerBase : MonoBehaviour {
 
@@ -68,18 +44,6 @@ public class PlayerBase : MonoBehaviour {
 	void Update () {
 
 	}
-
-    /*
-    public virtual void DrawStatus()
-    {
-
-    }
-
-    public virtual void DrawCommand()
-    {
-
-    }
-     */
 
     public void GetDamage(int damage)
     {
